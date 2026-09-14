@@ -61,10 +61,11 @@
 
   <aside class="settings" id="settingsPanel" hidden aria-label="Appearance & Accessibility"><div class="settings-head"><h2>Display settings</h2><button type="button" id="settingsClose" aria-label="ปิด">×</button></div><div class="setting-group"><span>Theme</span><div class="segmented" id="themeOptions"><button type="button" data-theme-option="dark">Dark</button><button type="button" data-theme-option="dim">Dim</button><button type="button" data-theme-option="system">System</button></div></div><div class="setting-group"><span>Text size</span><div class="segmented four" id="fontOptions"><button type="button" data-font-option="90">90%</button><button type="button" data-font-option="100">100%</button><button type="button" data-font-option="115">115%</button><button type="button" data-font-option="125">125%</button></div></div><div class="setting-group toggle-row"><label for="motionToggle"><span>Reduce motion</span><small>ลดเอฟเฟกต์การเคลื่อนไหว</small></label><input id="motionToggle" type="checkbox" role="switch"></div></aside>
 
-  <div class="search-modal" id="searchModal" hidden>
+  <div class="search-modal" id="searchModal" hidden role="dialog" aria-modal="true" aria-labelledby="searchTitle">
     <div class="search-backdrop"></div>
     <div class="search-panel">
       <div class="search-input-wrapper">
+        <h2 id="searchTitle" class="sr-only">Search</h2>
         <input type="text" id="searchInput" placeholder="Search documentation, guides, API..." autocomplete="off" spellcheck="false">
         <button class="search-close" id="searchClose" type="button" aria-label="Close search">×</button>
       </div>
