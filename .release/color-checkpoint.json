@@ -1,0 +1,11 @@
+{
+  "version": "color-v0-carbon-olive",
+  "sourceRevision": "901234c902be3f1be9877f1eb2b4271146b4aa47",
+  "palette": {
+    "background": "#090b09",
+    "surface": "#141814",
+    "accent": "#7e8e63",
+    "accentBright": "#a0b17e"
+  },
+  "note": "Release checkpoint only. Presentation code unchanged from source revision."
+}
