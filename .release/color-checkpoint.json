@@ -1,0 +1,11 @@
+{
+  "version": "color-v1-refined-olive",
+  "sourceRevision": "3eb41a83b33919733cf565c1996e21817cef5ce6",
+  "palette": {
+    "background": "#080a08",
+    "surface": "#121612",
+    "accent": "#a5b982",
+    "accentBright": "#c4d7a1"
+  },
+  "note": "Release checkpoint only. Presentation code unchanged from source revision."
+}
