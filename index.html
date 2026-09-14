@@ -17,53 +17,63 @@
   <a class="skip-link" href="#mainContent">ข้ามไปยังเนื้อหาหลัก</a>
   <header class="site-header" id="top">
     <div class="header-inner">
-      <a class="brand" href="#top" aria-label="AGENTS SDK DOSE หน้าแรก"><img src="assets/icons/logo.svg" alt="" width="40" height="40"><span><strong>AGENTS SDK</strong><small>DOSE</small></span></a>
-      <nav class="desktop-nav" aria-label="เมนูหลัก"><a href="#capabilities">Capabilities</a><a href="#workflow">Workflow</a><a href="#resources">Resources</a></nav>
-      <div class="toolbar"><button class="icon-btn" id="themeQuick" type="button" aria-label="สลับธีม"><span aria-hidden="true">◐</span><span class="button-label">Dark</span></button><button class="icon-btn" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settingsPanel" aria-label="เปิดการตั้งค่า">Aa</button><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="เปิดเมนู"><span></span><span></span></button></div>
+      <a class="brand" href="/" aria-label="AGENTS SDK DOSE หน้าแรก"><img src="assets/icons/logo.svg" alt="" width="40" height="40"><span><strong>AGENTS SDK</strong><small>DOSE</small></span></a>
+      <nav class="desktop-nav" aria-label="เมนูหลัก">
+        <a href="/" data-nav="home">Home</a>
+        <a href="/docs" data-nav="docs">Docs</a>
+        <a href="/guides" data-nav="guides">Guides</a>
+        <a href="/api" data-nav="api">API</a>
+        <a href="/sdk" data-nav="sdk">SDKs</a>
+        <a href="/examples" data-nav="examples">Examples</a>
+      </nav>
+      <div class="toolbar">
+        <button class="search-btn" id="searchBtn" type="button" aria-label="ค้นหา" title="Cmd+K"><span>⌘</span><span class="search-label">Search</span></button>
+        <button class="icon-btn" id="themeQuick" type="button" aria-label="สลับธีม"><span aria-hidden="true">◐</span><span class="button-label">Dark</span></button>
+        <button class="icon-btn" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settingsPanel" aria-label="เปิดการตั้งค่า">Aa</button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="เปิดเมนู"><span></span><span></span></button>
+      </div>
     </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="เมนูมือถือ" hidden><a href="#capabilities">Capabilities</a><a href="#workflow">Workflow</a><a href="#resources">Resources</a></nav>
+    <nav class="mobile-nav" id="mobileNav" aria-label="เมนูมือถือ" hidden>
+      <a href="/" data-nav="home">Home</a>
+      <a href="/docs" data-nav="docs">Docs</a>
+      <a href="/guides" data-nav="guides">Guides</a>
+      <a href="/api" data-nav="api">API</a>
+      <a href="/sdk" data-nav="sdk">SDKs</a>
+      <a href="/examples" data-nav="examples">Examples</a>
+    </nav>
   </header>
 
-  <main id="mainContent">
-    <section class="hero-section" aria-labelledby="pageTitle">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="live-dot"></span>Production workspace · v2.0</div>
-        <h1 id="pageTitle">Build agents.<br><span>Ship with clarity.</span></h1>
-        <p class="lede">พื้นที่ทำงานสำหรับออกแบบ ทดสอบ และส่งมอบ AI agents ด้วยโครงสร้างที่ชัดเจน เร็ว และพร้อมขยายจากต้นแบบสู่ระบบจริง</p>
-        <div class="hero-actions"><a class="button primary" href="#resources">Explore resources <span aria-hidden="true">↗</span></a><a class="button ghost" href="#workflow">View workflow <span aria-hidden="true">↓</span></a></div>
-        <ul class="signal-row" aria-label="จุดเด่น"><li><strong>01</strong><span>Desktop clarity</span></li><li><strong>02</strong><span>Accessible design</span></li><li><strong>03</strong><span>Zero dependencies</span></li></ul>
+  <div class="page-container">
+    <aside class="docs-sidebar" id="docsSidebar" hidden>
+      <div class="sidebar-header">
+        <span class="sidebar-title">Documentation</span>
+        <button class="close-sidebar-btn" id="closeSidebar" aria-label="Close sidebar" type="button">×</button>
       </div>
-      <div class="console-wrap reveal delay-1">
-        <div class="console-card" id="consoleCard">
-          <div class="console-head"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>agent.config</span><span class="status-chip"><i></i>Ready</span></div>
-          <div class="console-body" aria-label="ตัวอย่างการตั้งค่า Agent">
-            <div><span>01</span><code><b>agent</b> <em>"dose-core"</em> {</code></div><div><span>02</span><code>&nbsp;&nbsp;model: <em>"reasoning"</em>,</code></div><div class="active"><span>03</span><code>&nbsp;&nbsp;tools: <mark>["search", "code"]</mark>,</code></div><div><span>04</span><code>&nbsp;&nbsp;guardrails: <b>true</b>,</code></div><div><span>05</span><code>&nbsp;&nbsp;deploy: <em>"production"</em></code></div><div><span>06</span><code>}</code></div>
-          </div>
-          <div class="console-foot"><span><i></i>Runtime healthy</span><span>42 ms</span></div>
-        </div>
-        <div class="float-card quality" aria-hidden="true"><b>✓</b><div><small>Quality gate</small><strong>Passed</strong></div></div><div class="float-card success" aria-hidden="true"><small>Success rate</small><strong>99.9%</strong></div>
-      </div>
-    </section>
+      <nav class="sidebar-nav" id="sidebarNav"></nav>
+    </aside>
 
-    <section class="section" id="capabilities" aria-labelledby="capabilitiesTitle">
-      <div class="section-heading reveal"><span class="section-index">01 / Capabilities</span><h2 id="capabilitiesTitle">ทุกอย่างที่ Agent ต้องใช้<br><span>อยู่ในเส้นทางเดียวกัน</span></h2></div>
-      <div class="feature-grid">
-        <article class="feature-card reveal"><span class="feature-icon">⌁</span><small>01</small><h3>Design</h3><p>กำหนดบทบาท เครื่องมือ และข้อจำกัดด้วยโครงสร้างที่อ่านง่ายและตรวจสอบได้</p><a href="#resources">Open blueprint <span>→</span></a></article>
-        <article class="feature-card reveal delay-1"><span class="feature-icon">◇</span><small>02</small><h3>Evaluate</h3><p>วัดคุณภาพ ความเร็ว และความน่าเชื่อถือก่อนนำ workflow ไปใช้งานจริง</p><a href="#workflow">See the loop <span>→</span></a></article>
-        <article class="feature-card reveal delay-2"><span class="feature-icon">↗</span><small>03</small><h3>Deploy</h3><p>ส่งมอบเวอร์ชันที่ผ่านเกณฑ์ พร้อมทรัพยากรและแนวทางต่อยอดระบบหลังบ้าน</p><a href="#resources">Deployment kit <span>→</span></a></article>
-      </div>
-    </section>
+    <main id="mainContent">
+      <div id="pageContent"></div>
+    </main>
+  </div>
 
-    <section class="section workflow-section" id="workflow" aria-labelledby="workflowTitle">
-      <div class="workflow-copy reveal"><span class="section-index">02 / Workflow</span><h2 id="workflowTitle">จากไอเดียสู่ระบบจริง<br><span>โดยไม่หลุดบริบท</span></h2><p>วงจรทำงานแบบต่อเนื่องช่วยให้ทุกการเปลี่ยนแปลงย้อนตรวจได้ ทีมเห็นสถานะเดียวกัน และนำผลประเมินกลับมาปรับ Agent ได้ทันที</p></div>
-      <ol class="workflow-list reveal delay-1"><li><span>01</span><div><h3>Define</h3><p>วางเป้าหมายและขอบเขต</p></div><i>→</i></li><li><span>02</span><div><h3>Compose</h3><p>เชื่อมโมเดลและเครื่องมือ</p></div><i>→</i></li><li><span>03</span><div><h3>Evaluate</h3><p>ทดสอบกับเกณฑ์คุณภาพ</p></div><i>→</i></li><li><span>04</span><div><h3>Ship</h3><p>ส่งเวอร์ชันพร้อมใช้งาน</p></div><i>✓</i></li></ol>
-    </section>
-
-    <section class="section" id="resources" aria-labelledby="resourcesTitle"><div class="resource-panel reveal"><div><span class="section-index">03 / Resources</span><h2 id="resourcesTitle">Resource pack<br><span>พร้อมต่อยอด</span></h2><p>แยก HTML, CSS, JavaScript, SVG และ web manifest เพื่อให้แก้ไขง่าย โหลดเร็ว และชัดบนจอคอมพิวเตอร์ทุกความหนาแน่นพิกเซล</p></div><div class="resource-list"><div><span>UI system</span><strong>Responsive tokens</strong></div><div><span>Accessibility</span><strong>Keyboard + reduced motion</strong></div><div><span>Progressive web</span><strong>Install manifest</strong></div><div><span>Performance</span><strong>Zero runtime dependencies</strong></div></div></div></section>
-  </main>
-
-  <footer><div><a class="brand footer-brand" href="#top"><img src="assets/icons/logo.svg" alt="" width="34" height="34"><strong>AGENTS SDK DOSE</strong></a><p>Build with intent. Ship with confidence.</p></div><div class="footer-links"><a href="#capabilities">Capabilities</a><a href="#workflow">Workflow</a><a href="#resources">Resources</a></div><p class="copyright">© <span id="year"></span> AGENTS SDK DOSE</p></footer>
+  <footer><div><a class="brand footer-brand" href="/"><img src="assets/icons/logo.svg" alt="" width="34" height="34"><strong>AGENTS SDK DOSE</strong></a><p>Build with intent. Ship with confidence.</p></div><div class="footer-links"><a href="/docs">Docs</a><a href="/guides">Guides</a><a href="/api">API</a><a href="/sdk">SDKs</a><a href="/examples">Examples</a></div><p class="copyright">© <span id="year"></span> AGENTS SDK DOSE</p></footer>
 
   <aside class="settings" id="settingsPanel" hidden aria-label="Appearance & Accessibility"><div class="settings-head"><h2>Display settings</h2><button type="button" id="settingsClose" aria-label="ปิด">×</button></div><div class="setting-group"><span>Theme</span><div class="segmented" id="themeOptions"><button type="button" data-theme-option="dark">Dark</button><button type="button" data-theme-option="dim">Dim</button><button type="button" data-theme-option="system">System</button></div></div><div class="setting-group"><span>Text size</span><div class="segmented four" id="fontOptions"><button type="button" data-font-option="90">90%</button><button type="button" data-font-option="100">100%</button><button type="button" data-font-option="115">115%</button><button type="button" data-font-option="125">125%</button></div></div><div class="setting-group toggle-row"><label for="motionToggle"><span>Reduce motion</span><small>ลดเอฟเฟกต์การเคลื่อนไหว</small></label><input id="motionToggle" type="checkbox" role="switch"></div></aside>
+
+  <div class="search-modal" id="searchModal" hidden>
+    <div class="search-backdrop"></div>
+    <div class="search-panel">
+      <div class="search-input-wrapper">
+        <input type="text" id="searchInput" placeholder="Search documentation, guides, API..." autocomplete="off" spellcheck="false">
+        <button class="search-close" id="searchClose" type="button" aria-label="Close search">×</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-help" id="searchHelp">
+        <div class="search-shortcut"><kbd>⌘K</kbd> to search</div>
+        <div class="search-shortcut"><kbd>ESC</kbd> to close</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
