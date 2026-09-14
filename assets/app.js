@@ -609,8 +609,13 @@ function renderPage(pageId) {
 }
 
 // Navigation function
-function navigateTo(pageId) {
-  const path = pageId === 'home' ? '/' : `/${pageId}`;
+function navigateTo(pageId, canonicalPath = null) {
+  let path;
+  if (canonicalPath) {
+    path = canonicalPath;
+  } else {
+    path = pageId === 'home' ? '/' : `/${pageId}`;
+  }
   window.history.pushState({ pageId }, '', path);
   renderPage(pageId);
   window.scrollTo(0, 0);
@@ -625,7 +630,7 @@ document.addEventListener('click', e => {
   const pageId = idFromPath(pathname);
 
   e.preventDefault();
-  navigateTo(pageId);
+  navigateTo(pageId, pathname);
   if (!mobile.hidden) closeMenu();
   if (!docsSidebar.hidden && window.innerWidth < 1100) closeSidebar();
 });
