@@ -216,7 +216,8 @@ const searchDatabase = [
 // URL slug to page ID mapping
 const slugToId = {
   'chat-agent': 'chatAgent',
-  'tool-integration': 'toolIntegration'
+  'tool-integration': 'toolIntegration',
+  'streaming': 'streaming'
 };
 
 // Convert URL path to page ID
