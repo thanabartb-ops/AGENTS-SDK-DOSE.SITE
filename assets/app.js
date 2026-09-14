@@ -228,6 +228,12 @@ function idFromPath(pathname) {
     const slug = path.replace('docs/', '');
     return pageData[slug] ? slug : 'docs';
   }
+  if (path === 'guides') return 'guides';
+  if (path.startsWith('guides/')) {
+    const slug = path.replace('guides/', '');
+    const pageId = slugToId[slug];
+    return pageId && pageData[pageId] ? pageId : 'guides';
+  }
   if (path in pageData) return path;
   if (path in slugToId) return slugToId[path];
   return 'home';
@@ -553,6 +559,7 @@ function setupScrollReveal() {
     entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
+          e.target.classList.add('visible');
           e.target.style.animation = 'none';
           setTimeout(() => {
             e.target.style.animation = '';
