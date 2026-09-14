@@ -145,18 +145,15 @@ document.addEventListener('keydown', e => {
       closeMenu();
       menu.focus();
     }
-    if (searchModal.classList.contains('open')) {
-      searchModal.classList.remove('open');
-      searchInput.value = '';
-      searchResults.innerHTML = '';
+    if (!searchModal.hidden) {
+      closeSearch();
+      searchBtn.focus();
     }
   }
   if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
     e.preventDefault();
-    searchModal.classList.toggle('open');
-    if (searchModal.classList.contains('open')) {
-      searchInput.focus();
-    }
+    if (searchModal.hidden) openSearch();
+    else closeSearch();
   }
 });
 
@@ -342,23 +339,31 @@ await session.message('How does entanglement work?');</code></div></div><h2>Erro
   }
 };</code></div></div><h2>Built-in Tools</h2><p>AGENTS SDK DOSE includes several built-in tools:</p><ul><li><strong>Web Search:</strong> Search the internet for information</li><li><strong>Code Execution:</strong> Run and test code snippets</li><li><strong>File Operations:</strong> Read and write files</li><li><strong>HTTP Requests:</strong> Make API calls</li><li><strong>Data Processing:</strong> Transform and analyze data</li></ul><h2>Custom Tools</h2><p>Create custom tools tailored to your specific needs:</p><div class="code-example"><div class="code-header"><span class="code-label">Custom Calculator Tool</span><button class="copy-btn" type="button">Copy</button></div><div class="code-content"><code>agent.addTool({
   name: 'calculate',
-  description: 'Perform mathematical calculations',
+  description: 'Perform arithmetic operations',
   parameters: {
     type: 'object',
     properties: {
-      expression: {
+      operation: {
         type: 'string',
-        description: 'Math expression to evaluate'
-      }
-    }
+        enum: ['add', 'subtract', 'multiply', 'divide'],
+        description: 'Mathematical operation'
+      },
+      a: { type: 'number', description: 'First operand' },
+      b: { type: 'number', description: 'Second operand' }
+    },
+    required: ['operation', 'a', 'b']
   },
   execute: async (params) => {
-    try {
-      const result = eval(params.expression);
-      return { result, success: true };
-    } catch (e) {
-      return { error: e.message, success: false };
-    }
+    const ops = {
+      add: (x, y) => x + y,
+      subtract: (x, y) => x - y,
+      multiply: (x, y) => x * y,
+      divide: (x, y) => y === 0 ? null : x / y
+    };
+    const result = ops[params.operation]?.(params.a, params.b);
+    return result !== null
+      ? { result, success: true }
+      : { error: 'Division by zero', success: false };
   }
 });</code></div></div><h2>Tool Best Practices</h2><ul><li>Clear naming and descriptions for discoverability</li><li>Well-defined parameter schemas for proper usage</li><li>Comprehensive error handling</li><li>Input validation and sanitization</li><li>Rate limiting and throttling where needed</li><li>Detailed logging for debugging</li></ul><h2>API Integrations</h2><p>Connect your agents to popular APIs:</p><ul><li>OpenAI, Anthropic, and other LLM providers</li><li>Web APIs (Twitter, GitHub, etc.)</li><li>Database connectors</li><li>Messaging platforms</li><li>Cloud services</li></ul><h2>Error Handling in Tools</h2><div class="code-example"><div class="code-header"><span class="code-label">Robust Tool Implementation</span><button class="copy-btn" type="button">Copy</button></div><div class="code-content"><code>execute: async (params) => {
   try {
@@ -527,6 +532,20 @@ function attachConsoleCard() {
   });
 }
 
+// Open search modal with proper state management
+function openSearch() {
+  searchModal.hidden = false;
+  searchModal.classList.add('open');
+  searchInput.focus();
+}
+
+function closeSearch() {
+  searchModal.hidden = true;
+  searchModal.classList.remove('open');
+  searchInput.value = '';
+  searchResults.innerHTML = '';
+}
+
 // Setup scroll reveal animations
 function setupScrollReveal() {
   const els = $$('[class*="reveal"]');
@@ -603,6 +622,14 @@ document.addEventListener('click', e => {
   if (!docsSidebar.hidden && window.innerWidth < 1100) closeSidebar();
 });
 
+// Search button and close handlers
+searchBtn.addEventListener('click', openSearch);
+
+searchClose.addEventListener('click', () => {
+  closeSearch();
+  searchBtn.focus();
+});
+
 // Search functionality
 searchInput.addEventListener('input', e => {
   const query = e.target.value.toLowerCase().trim();
@@ -632,19 +659,10 @@ searchInput.addEventListener('input', e => {
     item.addEventListener('click', e => {
       e.preventDefault();
       const id = item.dataset.id;
+      closeSearch();
       navigateTo(id);
-      searchModal.classList.remove('open');
-      searchInput.value = '';
-      searchResults.innerHTML = '';
     });
   });
-});
-
-searchClose.addEventListener('click', () => {
-  searchModal.classList.remove('open');
-  searchInput.value = '';
-  searchResults.innerHTML = '';
-  searchBtn.focus();
 });
 
 // Initialize page based on current URL
